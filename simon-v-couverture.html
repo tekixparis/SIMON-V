@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Simon V Couverture — Artisan couvreur parisien. Rénovation, zinguerie, isolation, Velux. Plus de 10 ans d'expérience. Devis gratuit.">
+<title>Simon V Couverture — L'Art de la Toiture Parisienne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --slate: #1C2535;
+  --slate-mid: #2E3D55;
+  --slate-light: #4A5568;
+  --gold: #B8975A;
+  --gold-light: #D4AF74;
+  --gold-pale: #F5EDD8;
+  --white: #FAFAF8;
+  --white-pure: #FFFFFF;
+  --cream: #F7F4EE;
+  --blue-deep: #1A2F4E;
+  --gray-muted: #8A8F9A;
+  --gray-line: #E4E2DC;
+  --text-body: #3A3F4A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--white);color:var(--text-body);overflow-x:hidden;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ─── NAV ─── */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 4rem;
+  background:rgba(250,250,248,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color 0.3s var(--ease), padding 0.3s var(--ease);
+}
+nav.scrolled{border-color:var(--gray-line);padding-top:0.9rem;padding-bottom:0.9rem}
+.nav-logo{font-family:var(--font-display);font-size:1.15rem;font-weight:500;color:var(--slate);letter-spacing:0.04em;text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--slate-light);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.5rem;border:1px solid var(--slate);color:var(--slate);text-decoration:none;transition:all 0.25s var(--ease)}
+.nav-cta:hover{background:var(--slate);color:var(--white)}
+.nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-mobile-btn span{display:block;width:22px;height:1.5px;background:var(--slate);transition:all 0.3s}
+
+/* ─── HERO ─── */
+.hero {
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  padding-top:5rem;
+}
+.hero-left {
+  display:flex;flex-direction:column;justify-content:center;
+  padding:6rem 4rem 6rem 4rem;
+  background:var(--slate);
+  position:relative;overflow:hidden;
+}
+.hero-left::before {
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(184,151,90,0.03) 40px,rgba(184,151,90,0.03) 41px);
+}
+.hero-eyebrow {
+  font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;position:relative;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero-title {
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,5vw,4.2rem);
+  font-weight:300;
+  color:var(--white);
+  line-height:1.12;
+  letter-spacing:-0.01em;
+  margin-bottom:2rem;
+  position:relative;
+}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-subtitle {
+  font-size:0.95rem;color:rgba(250,250,248,0.65);
+  line-height:1.8;max-width:420px;margin-bottom:3rem;position:relative;
+}
+.hero-badges {
+  display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem;position:relative;
+}
+.hero-badge {
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.75rem;letter-spacing:0.06em;
+  color:rgba(250,250,248,0.8);
+  border:1px solid rgba(184,151,90,0.35);
+  padding:0.45rem 1rem;
+}
+.hero-badge svg{width:14px;height:14px;stroke:var(--gold);fill:none;flex-shrink:0}
+.hero-actions{display:flex;gap:1.25rem;align-items:center;position:relative}
+.btn-primary {
+  display:inline-block;padding:1rem 2.5rem;
+  background:var(--gold);color:var(--slate);
+  font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;font-weight:500;
+  transition:all 0.25s var(--ease);border:none;cursor:pointer;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-secondary {
+  display:inline-block;padding:1rem 2rem;
+  background:transparent;color:rgba(250,250,248,0.7);
+  font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border:1px solid rgba(255,255,255,0.2);
+  transition:all 0.25s var(--ease);cursor:pointer;
+}
+.btn-secondary:hover{color:var(--white);border-color:rgba(255,255,255,0.5)}
+
+.hero-right {
+  position:relative;overflow:hidden;
+  background:var(--cream);
+}
+.hero-right-inner {
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  padding:2rem;
+}
+.hero-zinc-art {
+  width:100%;height:100%;
+  background:var(--slate-mid);
+  position:relative;overflow:hidden;
+}
+.zinc-pattern {
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(184,151,90,0.12) 0,rgba(184,151,90,0.12) 1px,transparent 1px,transparent 60px),
+    repeating-linear-gradient(90deg,rgba(184,151,90,0.08) 0,rgba(184,151,90,0.08) 1px,transparent 1px,transparent 60px);
+}
+.zinc-overlay {
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:3rem;text-align:center;
+}
+.zinc-number {
+  font-family:var(--font-display);font-size:8rem;font-weight:300;
+  color:rgba(184,151,90,0.15);line-height:1;margin-bottom:1rem;
+}
+.zinc-label {
+  font-family:var(--font-display);font-size:1.6rem;font-weight:300;
+  color:rgba(250,250,248,0.4);letter-spacing:0.05em;
+  font-style:italic;
+}
+.hero-stats {
+  position:absolute;bottom:0;left:0;right:0;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:rgba(28,37,53,0.9);backdrop-filter:blur(8px);
+}
+.stat-item {
+  padding:1.5rem;border-right:1px solid rgba(184,151,90,0.2);
+  text-align:center;
+}
+.stat-item:last-child{border-right:none}
+.stat-num {
+  font-family:var(--font-display);font-size:2rem;font-weight:400;
+  color:var(--gold-light);display:block;line-height:1;margin-bottom:0.3rem;
+}
+.stat-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,250,248,0.45)}
+
+/* ─── SECTION SHARED ─── */
+section{padding:7rem 4rem}
+.section-eyebrow {
+  font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.section-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.section-title {
+  font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:300;color:var(--slate);line-height:1.2;letter-spacing:-0.01em;
+}
+.section-title em{font-style:italic;color:var(--gold)}
+
+/* ─── SERVICES ─── */
+.services-section{background:var(--white)}
+.services-header{max-width:600px;margin-bottom:5rem}
+.services-grid {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:0;border:1px solid var(--gray-line);
+}
+.service-card {
+  padding:2.5rem 2rem;border-right:1px solid var(--gray-line);
+  border-bottom:1px solid var(--gray-line);
+  position:relative;overflow:hidden;
+  transition:background 0.3s var(--ease);
+  cursor:default;
+}
+.service-card::after {
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s var(--ease);
+}
+.service-card:hover{background:var(--cream)}
+.service-card:hover::after{transform:scaleX(1)}
+.service-num {
+  font-family:var(--font-display);font-size:0.8rem;
+  color:var(--gold);letter-spacing:0.1em;margin-bottom:1.5rem;display:block;
+}
+.service-icon{width:40px;height:40px;margin-bottom:1.25rem;color:var(--slate-mid)}
+.service-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2}
+.service-name {
+  font-family:var(--font-display);font-size:1.25rem;font-weight:500;
+  color:var(--slate);margin-bottom:0.75rem;
+}
+.service-desc{font-size:0.88rem;color:var(--gray-muted);line-height:1.7}
+
+/* ─── GUARANTEE ─── */
+.guarantee-section {
+  background:var(--slate);padding:5rem 4rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;
+}
+.guarantee-text .section-title{color:var(--white)}
+.guarantee-text .section-title em{color:var(--gold-light)}
+.guarantee-text p{color:rgba(250,250,248,0.6);margin-top:1.5rem;max-width:440px;line-height:1.9}
+.guarantee-items{display:flex;flex-direction:column;gap:2rem}
+.guarantee-item{display:flex;gap:1.5rem;align-items:flex-start}
+.guarantee-dot {
+  width:40px;height:40px;border:1px solid rgba(184,151,90,0.4);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  color:var(--gold);font-family:var(--font-display);font-size:0.9rem;
+}
+.guarantee-item-text h4{
+  font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(250,250,248,0.9);margin-bottom:0.35rem;font-weight:500;
+}
+.guarantee-item-text p{font-size:0.85rem;color:rgba(250,250,248,0.45);line-height:1.7}
+
+/* ─── ZONE ─── */
+.zone-section{background:var(--cream);text-align:center;padding:5rem 4rem}
+.zone-map {
+  width:100%;max-width:500px;margin:3rem auto;
+  aspect-ratio:1/1;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.zone-ring {
+  position:absolute;border-radius:50%;border:1px solid rgba(184,151,90,0.25);
+  animation:pulse-ring 3s ease-in-out infinite;
+}
+.zone-ring:nth-child(1){width:100%;height:100%;animation-delay:0s}
+.zone-ring:nth-child(2){width:70%;height:70%;animation-delay:0.5s}
+.zone-ring:nth-child(3){width:42%;height:42%;animation-delay:1s;border-color:rgba(184,151,90,0.5)}
+.zone-center {
+  width:16px;height:16px;background:var(--gold);border-radius:50%;
+  position:relative;z-index:2;
+  box-shadow:0 0 0 4px rgba(184,151,90,0.2),0 0 0 8px rgba(184,151,90,0.1);
+}
+.zone-label {
+  position:absolute;bottom:50%;left:50%;transform:translate(-50%, 3rem);
+  font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+}
+@keyframes pulse-ring{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.02);opacity:0.7}}
+.zone-cities {
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0.75rem;
+  max-width:600px;margin:0 auto;
+}
+.zone-city {
+  font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.4rem 1rem;border:1px solid var(--gray-line);color:var(--slate-light);
+  background:var(--white-pure);
+}
+
+/* ─── FORM SECTION ─── */
+.form-section {
+  background:var(--white);padding:7rem 4rem;
+}
+.form-wrapper {
+  max-width:900px;margin:0 auto;
+}
+.form-header{margin-bottom:4rem}
+.form-intro{margin-top:1rem;color:var(--gray-muted);font-size:0.93rem;max-width:520px;line-height:1.8}
+
+.devis-form{display:flex;flex-direction:column;gap:0}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--gray-line)}
+.form-row:first-of-type{border-top:1px solid var(--gray-line)}
+.form-group {
+  padding:1.75rem 0;border-right:1px solid var(--gray-line);
+  position:relative;
+}
+.form-group:last-child{border-right:none}
+.form-group.full-width{grid-column:1/-1;border-right:none}
+.form-label {
+  display:block;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.6rem;font-weight:500;
+}
+.form-input {
+  width:100%;border:none;outline:none;background:transparent;
+  font-family:var(--font-body);font-size:0.95rem;color:var(--slate);
+  padding:0;line-height:1.5;
+  transition:color 0.2s;
+}
+.form-input::placeholder{color:rgba(58,63,74,0.35)}
+.form-input:focus{color:var(--slate)}
+.form-select {
+  width:100%;border:none;outline:none;background:transparent;
+  font-family:var(--font-body);font-size:0.95rem;color:var(--slate);
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  padding:0;line-height:1.5;
+}
+.form-select option{background:var(--white);color:var(--slate)}
+.form-textarea {
+  width:100%;border:none;outline:none;background:transparent;
+  font-family:var(--font-body);font-size:0.95rem;color:var(--slate);
+  resize:vertical;min-height:100px;line-height:1.7;padding:0;
+}
+.form-textarea::placeholder{color:rgba(58,63,74,0.35)}
+
+/* type selector */
+.type-options{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.25rem}
+.type-btn {
+  padding:0.4rem 0.9rem;font-size:0.75rem;letter-spacing:0.08em;
+  border:1px solid var(--gray-line);color:var(--slate-light);
+  background:transparent;cursor:pointer;transition:all 0.2s var(--ease);
+  font-family:var(--font-body);
+}
+.type-btn:hover{border-color:var(--gold);color:var(--gold)}
+.type-btn.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* drop zone */
+.drop-zone {
+  border:1px dashed rgba(184,151,90,0.4);padding:3rem 2rem;
+  text-align:center;cursor:pointer;transition:all 0.25s var(--ease);
+  background:transparent;position:relative;margin-top:0.5rem;
+}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--gold);background:rgba(184,151,90,0.04)}
+.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.drop-icon{width:36px;height:36px;margin:0 auto 1rem;opacity:0.4}
+.drop-icon svg{width:100%;height:100%;stroke:var(--slate);fill:none;stroke-width:1.2}
+.drop-text{font-size:0.82rem;color:var(--gray-muted);line-height:1.7}
+.drop-text strong{display:block;font-size:0.9rem;color:var(--slate);font-weight:400;margin-bottom:0.25rem}
+.drop-hint{font-size:0.72rem;color:rgba(58,63,74,0.4);margin-top:0.5rem;letter-spacing:0.04em}
+.file-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
+.file-chip {
+  display:flex;align-items:center;gap:0.5rem;
+  padding:0.35rem 0.75rem;background:var(--cream);
+  font-size:0.75rem;color:var(--slate);
+}
+.file-chip button{border:none;background:none;cursor:pointer;color:var(--gray-muted);font-size:0.85rem;line-height:1;padding:0}
+.file-chip button:hover{color:var(--slate)}
+
+.form-submit-row {
+  padding:2.5rem 0 0;display:flex;align-items:center;gap:2rem;
+  border-top:1px solid var(--gray-line);
+}
+.btn-submit {
+  display:inline-flex;align-items:center;gap:0.75rem;
+  padding:1.1rem 3rem;background:var(--slate);color:var(--white);
+  border:none;cursor:pointer;font-family:var(--font-body);
+  font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;
+  font-weight:500;transition:all 0.25s var(--ease);
+}
+.btn-submit:hover{background:var(--blue-deep);transform:translateY(-1px)}
+.btn-submit svg{width:16px;height:16px;stroke:currentColor;fill:none;flex-shrink:0;transition:transform 0.2s}
+.btn-submit:hover svg{transform:translateX(3px)}
+.form-privacy{font-size:0.75rem;color:rgba(58,63,74,0.4);max-width:280px;line-height:1.6}
+.form-success {
+  display:none;padding:3rem;text-align:center;background:var(--cream);
+}
+.form-success.visible{display:block}
+.form-success h3{font-family:var(--font-display);font-size:1.8rem;color:var(--slate);margin-bottom:0.75rem}
+.form-success p{color:var(--gray-muted)}
+
+/* ─── FOOTER ─── */
+footer {
+  background:var(--slate);padding:4rem 4rem 3rem;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:3rem;
+}
+.footer-logo-col{display:flex;flex-direction:column;gap:1rem}
+.footer-logo{font-family:var(--font-display);font-size:1.1rem;color:var(--white);letter-spacing:0.05em}
+.footer-logo span{color:var(--gold)}
+.footer-tagline{font-size:0.78rem;color:rgba(250,250,248,0.35);letter-spacing:0.06em;text-transform:uppercase;max-width:220px;line-height:1.6}
+.footer-divider{width:1px;height:auto;background:rgba(184,151,90,0.2);align-self:stretch}
+.footer-center{text-align:center}
+.footer-contact{display:flex;flex-direction:column;gap:0.6rem}
+.footer-contact a,.footer-contact p{font-size:0.85rem;color:rgba(250,250,248,0.5);text-decoration:none;transition:color 0.2s}
+.footer-contact a:hover{color:var(--gold)}
+.footer-contact strong{color:rgba(250,250,248,0.8);font-weight:400}
+.footer-right{text-align:right}
+.footer-address{font-size:0.82rem;color:rgba(250,250,248,0.4);line-height:1.8}
+.footer-hours{margin-top:1rem;font-size:0.78rem;color:rgba(250,250,248,0.3);line-height:1.7}
+.footer-bottom{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.07);text-align:center}
+.footer-bottom p{font-size:0.72rem;color:rgba(250,250,248,0.2);letter-spacing:0.06em}
+
+/* ─── WHATSAPP FLOAT ─── */
+.whatsapp-float {
+  position:fixed;bottom:2rem;right:2rem;z-index:200;
+  width:54px;height:54px;background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  text-decoration:none;transition:all 0.25s var(--ease);
+}
+.whatsapp-float:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+.whatsapp-float svg{width:26px;height:26px;fill:white}
+.whatsapp-pulse {
+  position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid rgba(37,211,102,0.4);
+  animation:wa-pulse 2s ease-out infinite;
+}
+@keyframes wa-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* ─── MOBILE NAV ─── */
+.mobile-menu {
+  display:none;position:fixed;inset:0;z-index:99;
+  background:var(--slate);flex-direction:column;
+  align-items:center;justify-content:center;gap:2.5rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-display);font-size:2rem;color:var(--white);text-decoration:none;letter-spacing:0.05em}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  nav{padding:1.25rem 2rem}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:8rem 2rem 4rem}
+  .hero-right{min-height:350px;display:block;position:relative}
+  .hero-right-inner{position:relative;inset:auto;height:350px}
+  .guarantee-section{grid-template-columns:1fr;gap:3rem;padding:5rem 2rem}
+  section{padding:5rem 2rem}
+  .form-section{padding:5rem 2rem}
+  footer{grid-template-columns:1fr;padding:3rem 2rem;gap:2rem}
+  .footer-divider{display:none}
+  .footer-right{text-align:left}
+  .nav-links,.nav-cta{display:none}
+  .nav-mobile-btn{display:flex}
+  .zone-section{padding:5rem 2rem}
+}
+@media(max-width:640px){
+  .form-row{grid-template-columns:1fr}
+  .form-group{border-right:none}
+  .form-group.full-width{grid-column:1}
+  .hero-title{font-size:2.5rem}
+  .stat-num{font-size:1.5rem}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  footer{padding:3rem 1.5rem}
+  section{padding:4rem 1.5rem}
+  .form-section{padding:4rem 1.5rem}
+  nav{padding:1rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Simon<span> V</span> Couverture</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#garanties">Garanties</a></li>
+    <li><a href="#zone">Zone d'intervention</a></li>
+    <li><a href="#devis">Contact</a></li>
+  </ul>
+  <a href="#devis" class="nav-cta">Devis gratuit</a>
+  <div class="nav-mobile-btn" id="menuBtn" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#garanties" onclick="closeMobile()">Garanties</a>
+  <a href="#zone" onclick="closeMobile()">Zone</a>
+  <a href="#devis" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero" aria-label="Présentation">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Artisan Couvreur Parisien</div>
+    <h1 class="hero-title">
+      Simon V Couverture :<br>
+      <em>L'Art de la<br>Toiture Parisienne</em>
+    </h1>
+    <p class="hero-subtitle">
+      Depuis plus de 10 ans, Simon Verheye perpétue le savoir-faire des couvreurs-zingueurs parisiens. Toiture, rénovation, zinc, Velux — un artisanat d'excellence au service de vos toits.
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Garantie Décennale
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+        Paris &amp; 30 km
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12"/></svg>
+        Devis 100% gratuit
+      </span>
+    </div>
+    <div class="hero-actions">
+      <a href="#devis" class="btn-primary">Demander mon devis</a>
+      <a href="#services" class="btn-secondary">Découvrir nos services</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <div class="hero-zinc-art">
+        <div class="zinc-pattern"></div>
+        <div class="zinc-overlay">
+          <div class="zinc-number">10</div>
+          <div class="zinc-label">Ans d'expérience</div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Ans d'expérience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">30</span>
+            <span class="stat-label">Km de couverture</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Devis gratuit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section" aria-labelledby="services-title">
+  <div class="services-header reveal">
+    <div class="section-eyebrow">Nos Prestations</div>
+    <h2 class="section-title" id="services-title">Un savoir-faire <em>complet</em>,<br>à la hauteur de vos toits</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-num">01</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" stroke-width="1.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 20L24 6l20 14v22H4V20z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 42V28h18v14"/>
+        </svg>
+      </div>
+      <h3 class="service-name">Rénovation de Toiture</h3>
+      <p class="service-desc">Tuiles, ardoises, réfection complète ou partielle. Travail soigné, matériaux sélectionnés pour la durabilité et l'esthétique de votre bâtiment.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-num">02</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" stroke-width="1.2">
+          <rect x="8" y="10" width="32" height="28" rx="1" stroke-linecap="round"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 18h32M16 10v28M32 10v28"/>
+        </svg>
+      </div>
+      <h3 class="service-name">Zinguerie Parisienne</h3>
+      <p class="service-desc">Spécialiste des toits en zinc, gouttières, descentes d'eau, solins et bavettes. La signature des toits haussmanniens de Paris, maîtrisée avec précision.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-num">03</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" stroke-width="1.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 34c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 34h40M24 18V10M17 13l7-3 7 3"/>
+        </svg>
+      </div>
+      <h3 class="service-name">Isolation Thermique</h3>
+      <p class="service-desc">Isolation de combles et toiture pour réduire vos dépenses énergétiques. Solutions conformes aux normes RT2012 et RE2020.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-num">04</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" stroke-width="1.2">
+          <rect x="12" y="12" width="24" height="24" rx="2" stroke-linecap="round"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 24h24M24 12v24"/>
+          <circle cx="24" cy="24" r="3"/>
+        </svg>
+      </div>
+      <h3 class="service-name">Pose de Velux</h3>
+      <p class="service-desc">Installation de fenêtres de toit Velux certifiées. Apportez lumière naturelle et ventilation à vos combles avec une pose étanche garantie.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-num">05</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48" stroke-width="1.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M24 8v32M14 16l10-8 10 8M10 38h28"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 24c5.333 2 14.667 2 20 0M14 30c5.333 2 14.667 2 20 0"/>
+        </svg>
+      </div>
+      <h3 class="service-name">Entretien &amp; Démoussage</h3>
+      <p class="service-desc">Nettoyage haute pression, traitement hydrofuge, réparation de fuites et entretien préventif pour prolonger la durée de vie de votre toiture.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3" style="background:var(--slate);border-color:var(--slate)">
+      <span class="service-num" style="color:var(--gold)">⚡</span>
+      <h3 class="service-name" style="color:var(--white);margin-top:1.5rem;margin-bottom:1rem">Fuite ? Urgence ?</h3>
+      <p class="service-desc" style="color:rgba(250,250,248,0.55);margin-bottom:2rem">Intervention rapide sur Paris et région parisienne. Ne laissez pas une fuite endommager votre logement.</p>
+      <a href="tel:+33602318839" class="btn-primary" style="display:inline-block;font-size:0.75rem">Appeler maintenant</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section id="garanties" class="guarantee-section" aria-labelledby="garanties-title">
+  <div class="guarantee-text reveal">
+    <div class="section-eyebrow" style="color:var(--gold-light)">Nos Engagements</div>
+    <h2 class="section-title" id="garanties-title">La qualité d'un <em>artisan</em>,<br>la sécurité d'un professionnel</h2>
+    <p>Simon Verheye s'engage personnellement sur chaque chantier. Chaque intervention est réalisée dans le respect des normes DTU, avec des matériaux de premier choix.</p>
+  </div>
+  <div class="guarantee-items">
+    <div class="guarantee-item reveal reveal-delay-1">
+      <div class="guarantee-dot">10</div>
+      <div class="guarantee-item-text">
+        <h4>Garantie Décennale</h4>
+        <p>Assurance professionnelle couvrant tous nos travaux pendant 10 ans. Votre investissement est protégé.</p>
+      </div>
+    </div>
+    <div class="guarantee-item reveal reveal-delay-2">
+      <div class="guarantee-dot">✓</div>
+      <div class="guarantee-item-text">
+        <h4>Devis Gratuit &amp; Transparent</h4>
+        <p>Estimation précise sans surprise. Nous vous expliquons chaque ligne du devis avant de commencer.</p>
+      </div>
+    </div>
+    <div class="guarantee-item reveal reveal-delay-3">
+      <div class="guarantee-dot">★</div>
+      <div class="guarantee-item-text">
+        <h4>Artisan Qualifié RGE</h4>
+        <p>Qualifications professionnelles à jour. Éligibilité aux aides de l'État (MaPrimeRénov', CEE).</p>
+      </div>
+    </div>
+    <div class="guarantee-item reveal reveal-delay-4">
+      <div class="guarantee-dot">⚡</div>
+      <div class="guarantee-item-text">
+        <h4>Réactivité Garantie</h4>
+        <p>Réponse sous 24h à toute demande de devis. Intervention d'urgence disponible pour les fuites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section id="zone" class="zone-section" aria-labelledby="zone-title">
+  <div class="reveal">
+    <div class="section-eyebrow" style="justify-content:center">Zone d'Intervention</div>
+    <h2 class="section-title" id="zone-title">Paris &amp; <em>Grande Couronne</em></h2>
+    <p style="color:var(--gray-muted);margin-top:1rem;max-width:480px;margin-left:auto;margin-right:auto">Basé dans le 20ème arrondissement, nous intervenons dans toute Paris et ses environs jusqu'à 30 km.</p>
+  </div>
+  <div class="zone-map" role="img" aria-label="Carte de la zone d'intervention : Paris et 30 km alentour">
+    <div class="zone-ring"></div>
+    <div class="zone-ring"></div>
+    <div class="zone-ring"></div>
+    <div class="zone-center"></div>
+    <span class="zone-label" style="bottom:auto;top:50%;transform:translate(-50%,-50%) translateY(-28px);font-size:0.6rem;color:rgba(184,151,90,0.6);letter-spacing:0.08em">Paris 20e</span>
+  </div>
+  <div class="zone-cities reveal">
+    <span class="zone-city">Paris (75)</span>
+    <span class="zone-city">Vincennes</span>
+    <span class="zone-city">Montreuil</span>
+    <span class="zone-city">Saint-Denis</span>
+    <span class="zone-city">Boulogne</span>
+    <span class="zone-city">Neuilly</span>
+    <span class="zone-city">Versailles</span>
+    <span class="zone-city">Créteil</span>
+    <span class="zone-city">Nanterre</span>
+    <span class="zone-city">Évry</span>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="devis" class="form-section" aria-labelledby="devis-title">
+  <div class="form-wrapper">
+    <div class="form-header reveal">
+      <div class="section-eyebrow">Devis Gratuit</div>
+      <h2 class="section-title" id="devis-title">Décrivez-nous <em>votre projet</em></h2>
+      <p class="form-intro">Remplissez ce formulaire et joignez vos photos — Simon analysera votre situation et vous contactera sous 24h avec une estimation personnalisée, sans engagement.</p>
+    </div>
+
+    <form class="devis-form reveal" id="devisForm" action="https://formspree.io/f/simon.v.couverture" method="POST" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="_subject" value="Nouvelle demande de devis — Simon V Couverture">
+      <input type="hidden" name="_replyto" id="replyToField">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="nom">Votre nom</label>
+          <input class="form-input" type="text" id="nom" name="nom" placeholder="Pierre Dupont" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="telephone">Téléphone</label>
+          <input class="form-input" type="tel" id="telephone" name="telephone" placeholder="06 XX XX XX XX" required autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="email">Adresse e-mail</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="pierre@exemple.fr" required autocomplete="email" oninput="document.getElementById('replyToField').value=this.value">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adresse">Adresse des travaux</label>
+          <input class="form-input" type="text" id="adresse" name="adresse" placeholder="42 Rue de la Paix, 75001 Paris" autocomplete="street-address">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label">Type de projet</label>
+          <div class="type-options" role="group" aria-label="Type de projet">
+            <button type="button" class="type-btn" data-value="Fuite / Urgence">🔧 Fuite / Urgence</button>
+            <button type="button" class="type-btn" data-value="Rénovation complète">🏗️ Rénovation</button>
+            <button type="button" class="type-btn" data-value="Nettoyage / Démoussage">🧹 Nettoyage</button>
+            <button type="button" class="type-btn" data-value="Pose Velux">🪟 Velux</button>
+            <button type="button" class="type-btn" data-value="Isolation thermique">🌡️ Isolation</button>
+            <button type="button" class="type-btn" data-value="Zinguerie">⚙️ Zinguerie</button>
+            <button type="button" class="type-btn" data-value="Autre">Autre</button>
+          </div>
+          <input type="hidden" id="typeProjet" name="type_projet">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label" for="description">Description du projet</label>
+          <textarea class="form-textarea" id="description" name="description" placeholder="Décrivez votre bâtiment : type de toiture, hauteur approximative, accès (échafaudage nécessaire ?), problèmes constatés..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-row" style="border-bottom:none">
+        <div class="form-group full-width">
+          <label class="form-label">Photos du toit / bâtiment</label>
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="fileInput" name="photos" multiple accept="image/*,application/pdf" aria-label="Joindre des photos">
+            <div class="drop-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+            </div>
+            <p class="drop-text">
+              <strong>Glissez vos photos ici</strong>
+              ou cliquez pour parcourir
+            </p>
+            <p class="drop-hint">JPG, PNG, PDF — max 10 Mo par fichier</p>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+      </div>
+
+      <div class="form-submit-row">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Demander mon devis gratuit
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
+        </button>
+        <p class="form-privacy">Vos données sont utilisées uniquement pour traiter votre demande. Aucun démarchage.</p>
+      </div>
+    </form>
+
+    <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+      <div style="font-size:2.5rem;margin-bottom:1rem">✉️</div>
+      <h3>Votre demande est envoyée !</h3>
+      <p>Simon a bien reçu votre demande de devis. Vous serez contacté dans les meilleurs délais, sous 24h en semaine.</p>
+      <a href="tel:+33602318839" class="btn-primary" style="display:inline-block;margin-top:1.5rem">06 02 31 88 39</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-col">
+    <div class="footer-logo">Simon<span> V</span> Couverture</div>
+    <p class="footer-tagline">L'art de la toiture parisienne depuis plus de 10 ans</p>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-center">
+    <div class="footer-contact">
+      <p><strong>Simon Verheye</strong></p>
+      <a href="tel:+33602318839">06 02 31 88 39</a>
+      <a href="mailto:simon.v.couverture@gmail.com">simon.v.couverture@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p class="footer-address">
+      397 Rue des Pyrénées<br>
+      75020 Paris
+    </p>
+    <p class="footer-hours">
+      Lundi — Vendredi<br>
+      08h00 – 18h00
+    </p>
+  </div>
+  <div class="footer-bottom" style="grid-column:1/-1">
+    <p>© 2025 Simon V Couverture — Tous droits réservés — Garantie Décennale</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/33602318839" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+  <div class="whatsapp-pulse"></div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+// NAV SCROLL
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60)},{passive:true});
+
+// MOBILE MENU
+const menuBtn=document.getElementById('menuBtn');
+const mobileMenu=document.getElementById('mobileMenu');
+menuBtn.addEventListener('click',()=>{
+  const open=mobileMenu.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+menuBtn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')menuBtn.click()});
+function closeMobile(){
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// SCROLL REVEAL
+const revealEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}})
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>ro.observe(el));
+
+// TYPE BUTTONS
+document.querySelectorAll('.type-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('typeProjet').value=btn.dataset.value;
+  });
+});
+
+// FILE DROP ZONE
+const dropZone=document.getElementById('dropZone');
+const fileInput=document.getElementById('fileInput');
+const fileList=document.getElementById('fileList');
+let selectedFiles=[];
+
+['dragenter','dragover'].forEach(e=>{
+  dropZone.addEventListener(e,ev=>{ev.preventDefault();dropZone.classList.add('drag-over')});
+});
+['dragleave','drop'].forEach(e=>{
+  dropZone.addEventListener(e,ev=>{
+    ev.preventDefault();dropZone.classList.remove('drag-over');
+    if(ev.type==='drop')addFiles(ev.dataTransfer.files);
+  });
+});
+fileInput.addEventListener('change',()=>{addFiles(fileInput.files)});
+
+function addFiles(files){
+  Array.from(files).forEach(f=>{
+    if(!selectedFiles.find(sf=>sf.name===f.name&&sf.size===f.size))selectedFiles.push(f);
+  });
+  renderFiles();
+}
+function removeFile(name,size){
+  selectedFiles=selectedFiles.filter(f=>!(f.name===name&&f.size===size));
+  renderFiles();
+}
+function renderFiles(){
+  fileList.innerHTML='';
+  selectedFiles.forEach(f=>{
+    const chip=document.createElement('div');chip.className='file-chip';
+    chip.innerHTML=`<span>${f.name}</span><button type="button" aria-label="Retirer ${f.name}">✕</button>`;
+    chip.querySelector('button').addEventListener('click',()=>removeFile(f.name,f.size));
+    fileList.appendChild(chip);
+  });
+}
+
+// FORM SUBMISSION
+const form=document.getElementById('devisForm');
+const submitBtn=document.getElementById('submitBtn');
+const formSuccess=document.getElementById('formSuccess');
+
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const email=document.getElementById('email').value;
+  const nom=document.getElementById('nom').value;
+  if(!nom||!email){alert('Veuillez renseigner au minimum votre nom et votre e-mail.');return;}
+
+  submitBtn.disabled=true;
+  submitBtn.innerHTML='Envoi en cours…';
+
+  const data=new FormData(form);
+  // Add files
+  selectedFiles.forEach(f=>data.append('photos',f));
+  // Target email
+  data.append('_to','simon.v.couverture@gmail.com');
+
+  try{
+    const res=await fetch('https://formspree.io/f/xpwzqvgr',{method:'POST',body:data,headers:{Accept:'application/json'}});
+    if(res.ok){
+      form.style.display='none';
+      formSuccess.classList.add('visible');
+      formSuccess.scrollIntoView({behavior:'smooth',block:'center'});
+    } else {
+      // Fallback: open mailto
+      openMailtoFallback(nom,email,data);
+    }
+  }catch{
+    openMailtoFallback(nom,email,data);
+  }finally{
+    submitBtn.disabled=false;
+    submitBtn.innerHTML='Demander mon devis gratuit <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>';
+  }
+});
+
+function openMailtoFallback(nom,email,data){
+  const type=data.get('type_projet')||'Non précisé';
+  const adresse=data.get('adresse')||'Non précisée';
+  const tel=data.get('telephone')||'Non précisé';
+  const desc=data.get('description')||'';
+  const body=encodeURIComponent(`Bonjour Simon,\n\nNom : ${nom}\nTéléphone : ${tel}\nAdresse : ${adresse}\nType de projet : ${type}\n\nDescription :\n${desc}\n\n(Envoyé depuis le formulaire du site)`);
+  window.location.href=`mailto:simon.v.couverture@gmail.com?subject=Demande de devis — ${encodeURIComponent(nom)}&body=${body}`;
+  form.style.display='none';
+  formSuccess.classList.add('visible');
+}
+</script>
+</body>
+</html>

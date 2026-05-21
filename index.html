@@ -150,7 +150,8 @@ nav.scrolled {
 .nav-logo-img {
   height: 40px; width: auto; object-fit: contain;
   transition: height 0.35s var(--ease);
-  filter: brightness(1.1);
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
 }
 nav.scrolled .nav-logo-img { height: 32px; }
 
@@ -281,6 +282,16 @@ nav.scrolled .nav-logo-img { height: 32px; }
   50% { transform: translateY(-24px) scale(1.04); }
 }
 
+.hero-vertical-label {
+  position: absolute; right: 2.5rem; bottom: 6rem; z-index: 2;
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(184,151,90,0.35); font-weight: 500;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-vertical-label::before { content: ''; width: 1px; height: 36px; background: rgba(184,151,90,0.25); }
+@media (max-width: 768px) { .hero-vertical-label { display: none; } }
+
 .hero-panel {
   position: relative; z-index: 2;
   display: flex; flex-direction: column; justify-content: flex-end;
@@ -400,6 +411,35 @@ nav.scrolled .nav-logo-img { height: 32px; }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ── MARQUEE TICKER ── */
+.marquee-strip {
+  background: var(--gold);
+  overflow: hidden;
+  padding: 0.85rem 0;
+  position: relative;
+  z-index: 10;
+}
+.marquee-track {
+  display: flex; gap: 0;
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
+  width: max-content;
+}
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+.marquee-track span {
+  white-space: nowrap;
+  font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase;
+  font-weight: 600; color: var(--ink);
+  padding: 0 2.5rem;
+}
+.marquee-track span.dot {
+  padding: 0; opacity: 0.4; font-size: 0.5rem;
+}
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ── SERVICES ── */
 .services-section { background: var(--white); padding: 7rem 4rem; }
 .services-header { max-width: 560px; margin-bottom: 4.5rem; }
@@ -427,6 +467,18 @@ nav.scrolled .nav-logo-img { height: 32px; }
   transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), background 0.3s;
   overflow: hidden; cursor: default;
 }
+.service-card::before {
+  content: attr(data-num);
+  position: absolute; bottom: -0.5rem; right: 1rem;
+  font-family: var(--font-display); font-size: 7rem; font-weight: 400;
+  line-height: 1; letter-spacing: -0.04em;
+  color: rgba(184,151,90,0.07);
+  pointer-events: none; transition: color 0.4s, transform 0.4s var(--ease);
+  transform: translateY(0);
+}
+.service-card:hover::before { color: rgba(184,151,90,0.13); transform: translateY(-4px); }
+.service-card-dark::before { color: rgba(212,175,116,0.08); }
+.service-card-dark:hover::before { color: rgba(212,175,116,0.15); }
 .service-card::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0;
   height: 2px;
@@ -777,7 +829,7 @@ footer {
   .nav-links, .nav-cta { display: none; }
   .nav-mobile-btn { display: flex; }
 
-  .hero-panel { max-width: 100%; padding: 4rem 1.5rem 10rem; }
+  .hero-panel { max-width: 100%; padding: calc(68px + 2rem) 1.5rem 6rem; }
   .hero-title { font-size: clamp(2.4rem, 8vw, 3.5rem); }
   .hero-orb-1 { width: 280px; height: 280px; }
   .hero-orb-2 { display: none; }
@@ -807,10 +859,14 @@ footer {
   .footer-right { text-align: left; grid-column: span 1; }
 }
 @media (max-width: 480px) {
-  .hero-badges { gap: 0.5rem; }
-  .hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .hero-stats-strip { grid-template-columns: 1fr; }
-  .stat-item { border-right: none; border-bottom: 1px solid rgba(184,151,90,0.12); }
+  .hero-badges { gap: 0.4rem; }
+  .hero-badge { font-size: 0.68rem; padding: 0.35rem 0.7rem; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+  .hero-stats-strip { grid-template-columns: repeat(3,1fr); }
+  .stat-item { padding: 0.85rem 0.5rem; }
+  .stat-num { font-size: 1.35rem; }
+  .stat-label { font-size: 0.56rem; letter-spacing: 0.1em; }
 }
 </style>
 </head>
@@ -854,6 +910,8 @@ footer {
   <div class="hero-overlay"></div>
   <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+
+  <div class="hero-vertical-label" aria-hidden="true">Île-de-France · Paris · 75</div>
 
   <div class="hero-panel">
     <div class="hero-eyebrow" aria-label="Artisan Couvreur Parisien">Artisan Couvreur Parisien</div>
@@ -904,6 +962,28 @@ footer {
   </div>
 </section>
 
+<!-- MARQUEE TICKER -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Couverture</span><span class="dot">·</span>
+    <span>Zinc</span><span class="dot">·</span>
+    <span>Rénovation</span><span class="dot">·</span>
+    <span>Paris</span><span class="dot">·</span>
+    <span>Velux</span><span class="dot">·</span>
+    <span>Zinguerie</span><span class="dot">·</span>
+    <span>Artisan</span><span class="dot">·</span>
+    <span>Décennale</span><span class="dot">·</span>
+    <span>Couverture</span><span class="dot">·</span>
+    <span>Zinc</span><span class="dot">·</span>
+    <span>Rénovation</span><span class="dot">·</span>
+    <span>Paris</span><span class="dot">·</span>
+    <span>Velux</span><span class="dot">·</span>
+    <span>Zinguerie</span><span class="dot">·</span>
+    <span>Artisan</span><span class="dot">·</span>
+    <span>Décennale</span><span class="dot">·</span>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section class="services-section" id="services">
   <div class="services-header" data-reveal>
@@ -912,7 +992,7 @@ footer {
   </div>
   <div class="services-grid">
 
-    <div class="service-card" data-reveal style="--delay:60ms">
+    <div class="service-card" data-reveal data-num="01" style="--delay:60ms">
       <span class="service-num">01</span>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
@@ -921,7 +1001,7 @@ footer {
       <p class="service-desc">Réfection complète ou partielle — tuiles, ardoises, zinc, bac acier. Diagnostic, conseil, exécution et garantie décennale.</p>
     </div>
 
-    <div class="service-card" data-reveal style="--delay:120ms">
+    <div class="service-card" data-reveal data-num="02" style="--delay:120ms">
       <span class="service-num">02</span>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
@@ -930,7 +1010,7 @@ footer {
       <p class="service-desc">Chéneaux, gouttières, lucarnes, noues, solins, abergements en zinc naturel. Traditions haussmanniennes préservées.</p>
     </div>
 
-    <div class="service-card" data-reveal style="--delay:180ms">
+    <div class="service-card" data-reveal data-num="03" style="--delay:180ms">
       <span class="service-num">03</span>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
@@ -939,7 +1019,7 @@ footer {
       <p class="service-desc">Isolation par l'extérieur (ITE) ou par l'intérieur (combles perdus ou aménageables). Certification RGE et éligibilité aux aides.</p>
     </div>
 
-    <div class="service-card" data-reveal style="--delay:60ms">
+    <div class="service-card" data-reveal data-num="04" style="--delay:60ms">
       <span class="service-num">04</span>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/></svg>
@@ -948,7 +1028,7 @@ footer {
       <p class="service-desc">Installation de fenêtres de toit VELUX® ou FAKRO. Choix du modèle, pose, étanchéité et finitions intérieures.</p>
     </div>
 
-    <div class="service-card" data-reveal style="--delay:120ms">
+    <div class="service-card" data-reveal data-num="05" style="--delay:120ms">
       <span class="service-num">05</span>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -957,7 +1037,7 @@ footer {
       <p class="service-desc">Nettoyage haute pression, traitement hydrofuge et anti-mousse, inspection visuelle et rapport photographique.</p>
     </div>
 
-    <div class="service-card service-card-dark" data-reveal style="--delay:180ms">
+    <div class="service-card service-card-dark" data-reveal data-num="!" style="--delay:180ms">
       <span class="service-num">Urgence</span>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"/></svg>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Simon V Couverture — Artisan couvreur parisien. Rénovation, zinguerie, isolation, Velux. Plus de 10 ans d'expérience. Devis gratuit.">
-<title>Simon V Couverture — L'Art de la Toiture Parisienne</title>
+<title>Simon V Couverture — Couvreur-Zingueur Parisien</title>
 <link rel="canonical" href="https://www.simonvcouverture.fr/">
 
 <!-- Open Graph -->
@@ -358,13 +358,13 @@ nav.scrolled .nav-logo-img { height: 32px; }
   background: var(--gold); color: var(--ink);
   font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
   font-weight: 600; text-decoration: none;
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s;
+  transition: background 0.4s cubic-bezier(0.33,1,0.68,1), transform 0.4s cubic-bezier(0.33,1,0.68,1), box-shadow 0.4s cubic-bezier(0.33,1,0.68,1);
   position: relative; overflow: hidden;
 }
 .btn-primary::after {
   content: ''; position: absolute; inset: 0;
   background: rgba(255,255,255,0.15);
-  transform: translateX(-101%); transition: transform 0.45s var(--ease);
+  transform: translateX(-101%); transition: transform 0.4s cubic-bezier(0.33,1,0.68,1);
 }
 .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(184,151,90,0.4); }
 .btn-primary:hover::after { transform: translateX(0); }
@@ -438,6 +438,67 @@ nav.scrolled .nav-logo-img { height: 32px; }
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* ── FORM SPLIT ── */
+.form-section { background: var(--white); }
+.form-split {
+  display: grid;
+  grid-template-columns: 42fr 58fr;
+  min-height: 640px;
+}
+.form-split-left {
+  background: var(--slate);
+  padding: 5rem 3.5rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.form-split-left::after {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(184,151,90,0.3), transparent);
+}
+.form-split-left .section-title { color: var(--white); margin-bottom: 1rem; font-size: clamp(1.8rem, 2.8vw, 2.8rem); }
+.form-split-left .section-title em { color: var(--gold-bright); }
+.form-split-sub {
+  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(250,248,244,0.4); margin-bottom: 3rem; font-weight: 400;
+}
+.form-trust-list { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 3rem; }
+.form-trust-item {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.87rem; color: rgba(250,248,244,0.7); font-weight: 300;
+}
+.form-trust-icon {
+  width: 32px; height: 32px; flex-shrink: 0;
+  border: 1px solid rgba(184,151,90,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+}
+.form-trust-icon svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.form-phone-cta {
+  display: block;
+  font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--gold-bright); text-decoration: none; font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: color 0.25s;
+  border-top: 1px solid rgba(184,151,90,0.18); padding-top: 1.5rem;
+}
+.form-phone-cta:hover { color: var(--white); }
+.form-phone-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,248,244,0.35); margin-bottom: 0.4rem; }
+.form-split-right {
+  background: var(--cream);
+  padding: 4.5rem 3.5rem 4.5rem 4rem;
+}
+@media (max-width: 900px) {
+  .form-split { grid-template-columns: 1fr; }
+  .form-split-left { padding: 3.5rem 2rem; }
+  .form-split-right { padding: 3rem 2rem; }
+}
+@media (max-width: 768px) {
+  .form-split-left { padding: 3rem 1.5rem; }
+  .form-split-right { padding: 2.5rem 1.5rem; }
 }
 
 /* ── SERVICES ── */
@@ -648,12 +709,7 @@ nav.scrolled .nav-logo-img { height: 32px; }
 }
 .zone-city:hover { border-color: var(--gold); color: var(--gold); }
 
-/* ── FORM ── */
-.form-section { background: var(--white); padding: 7rem 4rem; }
-.form-wrapper { max-width: 860px; margin: 0 auto; }
-.form-header { margin-bottom: 4rem; }
-.form-intro { margin-top: 1rem; color: #8A8074; font-size: 0.93rem; max-width: 500px; line-height: 1.8; font-weight: 300; }
-
+/* ── FORM (inner fields) ── */
 .devis-form { display: flex; flex-direction: column; gap: 0; }
 .form-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 0;
@@ -731,13 +787,13 @@ nav.scrolled .nav-logo-img { height: 32px; }
   padding: 1.05rem 2.8rem; background: var(--slate); color: var(--white);
   font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
   font-weight: 500; border: none; cursor: pointer; font-family: var(--font-body);
-  transition: background 0.3s var(--ease), transform 0.3s;
+  transition: background 0.4s cubic-bezier(0.33,1,0.68,1), transform 0.4s cubic-bezier(0.33,1,0.68,1);
   position: relative; overflow: hidden;
 }
 .btn-submit::after {
   content: ''; position: absolute; inset: 0;
   background: rgba(255,255,255,0.08); transform: translateX(-101%);
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.4s cubic-bezier(0.33,1,0.68,1);
 }
 .btn-submit:hover { background: var(--slate-mid); transform: translateY(-1px); }
 .btn-submit:hover::after { transform: translateX(0); }
@@ -747,7 +803,8 @@ nav.scrolled .nav-logo-img { height: 32px; }
 
 .form-success {
   display: none; text-align: center; padding: 4rem 2rem;
-  border: 1px solid rgba(184,151,90,0.25); background: rgba(184,151,90,0.04);
+  border-left: 3px solid var(--gold);
+  background: rgba(184,151,90,0.05);
 }
 .form-success.visible { display: block; }
 .form-success h3 {
@@ -765,7 +822,11 @@ footer {
   border-top: 1px solid rgba(184,151,90,0.15);
 }
 .footer-logo-col {}
-.footer-logo-img { height: 38px; width: auto; object-fit: contain; display: block; filter: brightness(1.1); }
+.footer-logo-img {
+  height: 38px; width: auto; object-fit: contain; display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.75;
+}
 .footer-tagline { margin-top: 0.75rem; font-size: 0.78rem; color: rgba(250,248,244,0.35); line-height: 1.7; max-width: 220px; font-weight: 300; }
 .footer-divider { width: 1px; background: rgba(184,151,90,0.12); align-self: stretch; }
 .footer-center {}
@@ -812,7 +873,6 @@ footer {
   .services-section { padding: 6rem 2.5rem; }
   .guarantee-section { gap: 4rem; padding: 6rem 2.5rem; }
   .zone-section { padding: 6rem 2.5rem; }
-  .form-section { padding: 6rem 2.5rem; }
   footer { padding: 4rem 2.5rem 2rem; }
 }
 @media (max-width: 900px) {
@@ -837,7 +897,7 @@ footer {
   .stat-item { padding: 1rem; }
   .stat-num { font-size: 1.5rem; }
 
-  .services-section, .realisations-section, .zone-section, .form-section { padding: 5rem 1.5rem; }
+  .services-section, .realisations-section, .zone-section { padding: 5rem 1.5rem; }
   .realisations-header { padding: 0 1.5rem; }
   .services-grid { grid-template-columns: 1fr; }
   .service-card-dark { grid-column: span 1; }
@@ -885,6 +945,7 @@ footer {
     <li><a href="#realisations">Réalisations</a></li>
     <li><a href="#garanties">Garanties</a></li>
     <li><a href="#zone">Zone</a></li>
+    <li><a href="#devis">Devis</a></li>
   </ul>
   <a href="#devis" class="nav-cta"><span>Devis gratuit</span></a>
   <button class="nav-mobile-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -901,6 +962,7 @@ footer {
   <a href="#realisations" onclick="closeMobile()">Réalisations</a>
   <a href="#garanties" onclick="closeMobile()">Garanties</a>
   <a href="#zone" onclick="closeMobile()">Zone</a>
+  <a href="#devis" onclick="closeMobile()">Devis</a>
   <a href="#devis" class="mobile-cta" onclick="closeMobile()">Devis gratuit</a>
 </div>
 
@@ -916,11 +978,11 @@ footer {
   <div class="hero-panel">
     <div class="hero-eyebrow" aria-label="Artisan Couvreur Parisien">Artisan Couvreur Parisien</div>
     <h1 class="hero-title">
-      Simon V Couverture&nbsp;:<br>
-      <em>L'Art de la<br>Toiture Parisienne</em>
+      Couvreur-Zingueur<br>
+      <em>Parisien depuis<br>10 ans</em>
     </h1>
     <p class="hero-subtitle">
-      Depuis plus de 10 ans, Simon Verheye perpétue le savoir-faire des couvreurs-zingueurs parisiens. Toiture, rénovation, zinc, Velux — un artisanat d'excellence au service de vos toits.
+      Simon Verheye façonne et restaure les toits de Paris — zinc, ardoise, tuile, Velux. Un artisan vrai, une garantie décennale, une parole donnée.
     </p>
     <div class="hero-badges">
       <span class="hero-badge">
@@ -984,223 +1046,47 @@ footer {
   </div>
 </div>
 
-<!-- SERVICES -->
-<section class="services-section" id="services">
-  <div class="services-header" data-reveal>
-    <div class="section-eyebrow">Nos Services</div>
-    <h2 class="section-title">Un savoir-faire <em>complet</em>,<br>à la hauteur de vos toits</h2>
-  </div>
-  <div class="services-grid">
-
-    <div class="service-card" data-reveal data-num="01" style="--delay:60ms">
-      <span class="service-num">01</span>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-      </div>
-      <h3 class="service-name">Rénovation de Toiture</h3>
-      <p class="service-desc">Réfection complète ou partielle — tuiles, ardoises, zinc, bac acier. Diagnostic, conseil, exécution et garantie décennale.</p>
-    </div>
-
-    <div class="service-card" data-reveal data-num="02" style="--delay:120ms">
-      <span class="service-num">02</span>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
-      </div>
-      <h3 class="service-name">Zinguerie Parisienne</h3>
-      <p class="service-desc">Chéneaux, gouttières, lucarnes, noues, solins, abergements en zinc naturel. Traditions haussmanniennes préservées.</p>
-    </div>
-
-    <div class="service-card" data-reveal data-num="03" style="--delay:180ms">
-      <span class="service-num">03</span>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
-      </div>
-      <h3 class="service-name">Isolation Thermique</h3>
-      <p class="service-desc">Isolation par l'extérieur (ITE) ou par l'intérieur (combles perdus ou aménageables). Certification RGE et éligibilité aux aides.</p>
-    </div>
-
-    <div class="service-card" data-reveal data-num="04" style="--delay:60ms">
-      <span class="service-num">04</span>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/></svg>
-      </div>
-      <h3 class="service-name">Pose de Velux</h3>
-      <p class="service-desc">Installation de fenêtres de toit VELUX® ou FAKRO. Choix du modèle, pose, étanchéité et finitions intérieures.</p>
-    </div>
-
-    <div class="service-card" data-reveal data-num="05" style="--delay:120ms">
-      <span class="service-num">05</span>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-      </div>
-      <h3 class="service-name">Entretien &amp; Démoussage</h3>
-      <p class="service-desc">Nettoyage haute pression, traitement hydrofuge et anti-mousse, inspection visuelle et rapport photographique.</p>
-    </div>
-
-    <div class="service-card service-card-dark" data-reveal data-num="!" style="--delay:180ms">
-      <span class="service-num">Urgence</span>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"/></svg>
-      </div>
-      <h3 class="service-name" style="color:var(--white);margin-top:1.5rem;margin-bottom:0.75rem">Fuite ? Urgence ?</h3>
-      <p class="service-desc">Intervention d'urgence 7j/7 pour les fuites actives. Diagnostic, bâchage provisoire et réparation rapide.</p>
-      <a href="tel:+33602318839" class="btn-primary" style="display:inline-block;margin-top:1.75rem;font-size:0.78rem">
-        Appeler Simon
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- RÉALISATIONS -->
-<section class="realisations-section" id="realisations" aria-label="Nos réalisations">
-  <div class="realisations-header" data-reveal>
-    <div class="section-eyebrow">Nos Réalisations</div>
-    <h2 class="section-title" id="real-title">Le zinc <em>parisien</em>,<br>entre tradition et précision</h2>
-  </div>
-
-  <div class="carousel-wrap" data-reveal style="--delay:150ms">
-    <div class="carousel-track" id="carouselTrack">
-
-      <div class="carousel-slide">
-        <div class="carousel-img-wrap">
-          <img src="photos_de_chantier-5.jpg" alt="Réfection complète — zinc joint debout" loading="lazy" decoding="async">
-        </div>
-        <div class="carousel-caption">
-          <span class="carousel-num">01</span>
-          <span class="carousel-label">Réfection complète — zinc joint debout</span>
-        </div>
-      </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-img-wrap">
-          <img src="photos_de_chantier-6.jpg" alt="Toiture zinc &amp; échafaudage" loading="lazy" decoding="async">
-        </div>
-        <div class="carousel-caption">
-          <span class="carousel-num">02</span>
-          <span class="carousel-label">Toiture zinc &amp; échafaudage</span>
-        </div>
-      </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-img-wrap">
-          <img src="photos_de_chantier-3.jpg" alt="Zinguerie complexe — cheminée haussmannienne" loading="lazy" decoding="async">
-        </div>
-        <div class="carousel-caption">
-          <span class="carousel-num">03</span>
-          <span class="carousel-label">Zinguerie complexe — cheminée haussmannienne</span>
-        </div>
-      </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-img-wrap">
-          <img src="photos_de_chantier-2.jpg" alt="Appui de fenêtre en zinc patiné" loading="lazy" decoding="async">
-        </div>
-        <div class="carousel-caption">
-          <span class="carousel-num">04</span>
-          <span class="carousel-label">Appui de fenêtre en zinc patiné</span>
-        </div>
-      </div>
-
-    </div>
-
-    <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Précédent">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-    </button>
-    <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Suivant">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-    </button>
-
-    <div class="carousel-dots" role="tablist" aria-label="Diapositives">
-      <button class="carousel-dot" data-index="0" role="tab" aria-label="Diapositive 1"></button>
-      <button class="carousel-dot" data-index="1" role="tab" aria-label="Diapositive 2"></button>
-      <button class="carousel-dot" data-index="2" role="tab" aria-label="Diapositive 3"></button>
-      <button class="carousel-dot" data-index="3" role="tab" aria-label="Diapositive 4"></button>
-    </div>
-
-    <div class="carousel-progress" aria-hidden="true">
-      <div class="carousel-progress-bar" id="carouselProgress"></div>
-    </div>
-  </div>
-</section>
-
-<!-- GUARANTEES -->
-<section class="guarantee-section" id="garanties">
-  <div class="guarantee-text" data-reveal>
-    <div class="section-eyebrow" style="color:var(--gold)">Nos Engagements</div>
-    <h2 class="section-title" id="garanties-title">La qualité d'un <em>artisan</em>,<br>la sécurité d'un professionnel</h2>
-    <p>Chaque chantier est réalisé dans le respect des normes DTU en vigueur, avec des matériaux sélectionnés pour leur durabilité. Votre satisfaction est notre priorité absolue.</p>
-  </div>
-  <div class="guarantee-items" data-reveal style="--delay:150ms">
-    <div class="guarantee-item">
-      <div class="guarantee-dot">I</div>
-      <div class="guarantee-item-text">
-        <h4>Garantie Décennale</h4>
-        <p>Assurance décennale complète couvrant tous nos travaux de couverture pendant 10 ans.</p>
-      </div>
-    </div>
-    <div class="guarantee-item">
-      <div class="guarantee-dot">II</div>
-      <div class="guarantee-item-text">
-        <h4>Devis Gratuit &amp; Transparent</h4>
-        <p>Devis détaillé et sans engagement sous 48h, avec photos et explication des travaux.</p>
-      </div>
-    </div>
-    <div class="guarantee-item">
-      <div class="guarantee-dot">III</div>
-      <div class="guarantee-item-text">
-        <h4>Artisan Qualifié RGE</h4>
-        <p>Certifications Qualibat et RGE pour vous permettre de bénéficier des aides de l'État.</p>
-      </div>
-    </div>
-    <div class="guarantee-item">
-      <div class="guarantee-dot">IV</div>
-      <div class="guarantee-item-text">
-        <h4>Réactivité Garantie</h4>
-        <p>Réponse sous 24h en semaine. Intervention d'urgence disponible 7j/7 pour les fuites.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ZONE -->
-<section class="zone-section" id="zone">
-  <div data-reveal>
-    <div class="section-eyebrow" style="justify-content:center">Zone d'intervention</div>
-    <h2 class="section-title" id="zone-title">Paris &amp; <em>Grande Couronne</em></h2>
-    <p style="color:#8A8074;margin-top:1rem;font-size:0.93rem;font-weight:300">Nous intervenons dans tout Paris et dans un rayon de 30 km autour de la capitale.</p>
-  </div>
-  <div class="zone-map" aria-hidden="true">
-    <div class="zone-ring"></div>
-    <div class="zone-ring"></div>
-    <div class="zone-ring"></div>
-    <div class="zone-center"></div>
-  </div>
-  <div class="zone-cities" data-reveal>
-    <span class="zone-city">Paris (tous arrondissements)</span>
-    <span class="zone-city">Boulogne-Billancourt</span>
-    <span class="zone-city">Levallois-Perret</span>
-    <span class="zone-city">Neuilly-sur-Seine</span>
-    <span class="zone-city">Saint-Cloud</span>
-    <span class="zone-city">Versailles</span>
-    <span class="zone-city">Vincennes</span>
-    <span class="zone-city">Saint-Denis</span>
-    <span class="zone-city">Montreuil</span>
-    <span class="zone-city">Créteil</span>
-    <span class="zone-city">Ivry-sur-Seine</span>
-    <span class="zone-city">Issy-les-Moulineaux</span>
-  </div>
-</section>
-
 <!-- DEVIS FORM -->
 <section class="form-section" id="devis">
-  <div class="form-wrapper">
-    <div class="form-header" data-reveal>
-      <div class="section-eyebrow">Demande de devis</div>
-      <h2 class="section-title" id="devis-title">Décrivez-nous <em>votre projet</em></h2>
-      <p class="form-intro">Complétez le formulaire ci-dessous et Simon vous recontactera sous 24h avec un devis gratuit et détaillé.</p>
+  <div class="form-split">
+
+    <!-- LEFT PANEL -->
+    <div class="form-split-left" data-reveal>
+      <div>
+        <div class="section-eyebrow" style="color:rgba(184,151,90,0.7);margin-bottom:1.5rem">Devis Gratuit</div>
+        <h2 class="section-title">Votre projet mérite<br>un <em>regard d'expert.</em></h2>
+        <p class="form-split-sub">Réponse sous 24h · Déplacement gratuit · Sans engagement</p>
+      </div>
+
+      <div class="form-trust-list">
+        <div class="form-trust-item">
+          <div class="form-trust-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          Garantie Décennale incluse
+        </div>
+        <div class="form-trust-item">
+          <div class="form-trust-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
+          </div>
+          Artisan certifié RGE
+        </div>
+        <div class="form-trust-item">
+          <div class="form-trust-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          10 ans d'expérience à Paris
+        </div>
+      </div>
+
+      <div>
+        <p class="form-phone-label">Appeler directement</p>
+        <a href="tel:+33602318839" class="form-phone-cta">06 02 31 88 39</a>
+      </div>
     </div>
 
-    <div data-reveal style="--delay:120ms">
+    <!-- RIGHT PANEL -->
+    <div class="form-split-right" data-reveal style="--delay:120ms">
       <form class="devis-form" id="devisForm" novalidate>
         <input type="hidden" name="_to" value="simon.v.couverture@gmail.com">
         <input type="hidden" name="replyTo" id="replyToField" value="">
@@ -1293,6 +1179,214 @@ footer {
         <a href="tel:+33602318839" class="btn-primary" style="display:inline-block;margin-top:1.75rem">06 02 31 88 39</a>
       </div>
     </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header" data-reveal>
+    <div class="section-eyebrow">Nos Services</div>
+    <h2 class="section-title">Cinq métiers.<br><em>Une seule exigence.</em></h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card" data-reveal data-num="01" style="--delay:60ms">
+      <span class="service-num">01</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+      </div>
+      <h3 class="service-name">Rénovation de Toiture</h3>
+      <p class="service-desc">Réfection complète ou partielle — tuiles, ardoises, zinc, bac acier. Diagnostic, conseil, exécution et garantie décennale.</p>
+    </div>
+
+    <div class="service-card" data-reveal data-num="02" style="--delay:120ms">
+      <span class="service-num">02</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
+      </div>
+      <h3 class="service-name">Zinguerie Parisienne</h3>
+      <p class="service-desc">Chéneaux, gouttières, lucarnes, noues, solins, abergements en zinc naturel. Traditions haussmanniennes préservées.</p>
+    </div>
+
+    <div class="service-card" data-reveal data-num="03" style="--delay:180ms">
+      <span class="service-num">03</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+      </div>
+      <h3 class="service-name">Isolation Thermique</h3>
+      <p class="service-desc">Isolation par l'extérieur (ITE) ou par l'intérieur (combles perdus ou aménageables). Certification RGE et éligibilité aux aides.</p>
+    </div>
+
+    <div class="service-card" data-reveal data-num="04" style="--delay:60ms">
+      <span class="service-num">04</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/></svg>
+      </div>
+      <h3 class="service-name">Pose de Velux</h3>
+      <p class="service-desc">Installation de fenêtres de toit VELUX® ou FAKRO. Choix du modèle, pose, étanchéité et finitions intérieures.</p>
+    </div>
+
+    <div class="service-card" data-reveal data-num="05" style="--delay:120ms">
+      <span class="service-num">05</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <h3 class="service-name">Entretien &amp; Démoussage</h3>
+      <p class="service-desc">Nettoyage haute pression, traitement hydrofuge et anti-mousse, inspection visuelle et rapport photographique.</p>
+    </div>
+
+    <div class="service-card service-card-dark" data-reveal data-num="!" style="--delay:180ms">
+      <span class="service-num">Urgence</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"/></svg>
+      </div>
+      <h3 class="service-name" style="color:var(--white);margin-top:1.5rem;margin-bottom:0.75rem">Fuite ? Urgence ?</h3>
+      <p class="service-desc">Intervention d'urgence 7j/7 pour les fuites actives. Diagnostic, bâchage provisoire et réparation rapide.</p>
+      <a href="tel:+33602318839" class="btn-primary" style="display:inline-block;margin-top:1.75rem;font-size:0.78rem">
+        Appeler Simon
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section class="realisations-section" id="realisations" aria-label="Nos réalisations">
+  <div class="realisations-header" data-reveal>
+    <div class="section-eyebrow">Nos Réalisations</div>
+    <h2 class="section-title" id="real-title">Des toits qui<br><em>traversent les siècles.</em></h2>
+  </div>
+
+  <div class="carousel-wrap" data-reveal style="--delay:150ms">
+    <div class="carousel-track" id="carouselTrack">
+
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="photos_de_chantier-5.jpg" alt="Réfection complète — zinc joint debout" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-caption">
+          <span class="carousel-num">01</span>
+          <span class="carousel-label">Réfection complète — zinc joint debout</span>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="photos_de_chantier-6.jpg" alt="Toiture zinc &amp; échafaudage" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-caption">
+          <span class="carousel-num">02</span>
+          <span class="carousel-label">Toiture zinc &amp; échafaudage</span>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="photos_de_chantier-3.jpg" alt="Zinguerie complexe — cheminée haussmannienne" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-caption">
+          <span class="carousel-num">03</span>
+          <span class="carousel-label">Zinguerie complexe — cheminée haussmannienne</span>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="photos_de_chantier-2.jpg" alt="Appui de fenêtre en zinc patiné" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-caption">
+          <span class="carousel-num">04</span>
+          <span class="carousel-label">Appui de fenêtre en zinc patiné</span>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Précédent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <div class="carousel-dots" role="tablist" aria-label="Diapositives">
+      <button class="carousel-dot" data-index="0" role="tab" aria-label="Diapositive 1"></button>
+      <button class="carousel-dot" data-index="1" role="tab" aria-label="Diapositive 2"></button>
+      <button class="carousel-dot" data-index="2" role="tab" aria-label="Diapositive 3"></button>
+      <button class="carousel-dot" data-index="3" role="tab" aria-label="Diapositive 4"></button>
+    </div>
+
+    <div class="carousel-progress" aria-hidden="true">
+      <div class="carousel-progress-bar" id="carouselProgress"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section class="guarantee-section" id="garanties">
+  <div class="guarantee-text" data-reveal>
+    <div class="section-eyebrow" style="color:var(--gold)">Nos Engagements</div>
+    <h2 class="section-title" id="garanties-title">L'engagement<br>d'un <em>artisan libre.</em></h2>
+    <p>Chaque chantier est réalisé dans le respect des normes DTU en vigueur, avec des matériaux sélectionnés pour leur durabilité. Votre satisfaction est notre priorité absolue.</p>
+  </div>
+  <div class="guarantee-items" data-reveal style="--delay:150ms">
+    <div class="guarantee-item">
+      <div class="guarantee-dot">I</div>
+      <div class="guarantee-item-text">
+        <h4>Garantie Décennale</h4>
+        <p>Assurance décennale complète couvrant tous nos travaux de couverture pendant 10 ans.</p>
+      </div>
+    </div>
+    <div class="guarantee-item">
+      <div class="guarantee-dot">II</div>
+      <div class="guarantee-item-text">
+        <h4>Devis Gratuit &amp; Transparent</h4>
+        <p>Devis détaillé et sans engagement sous 48h, avec photos et explication des travaux.</p>
+      </div>
+    </div>
+    <div class="guarantee-item">
+      <div class="guarantee-dot">III</div>
+      <div class="guarantee-item-text">
+        <h4>Artisan Qualifié RGE</h4>
+        <p>Certifications Qualibat et RGE pour vous permettre de bénéficier des aides de l'État.</p>
+      </div>
+    </div>
+    <div class="guarantee-item">
+      <div class="guarantee-dot">IV</div>
+      <div class="guarantee-item-text">
+        <h4>Réactivité Garantie</h4>
+        <p>Réponse sous 24h en semaine. Intervention d'urgence disponible 7j/7 pour les fuites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section class="zone-section" id="zone">
+  <div data-reveal>
+    <div class="section-eyebrow" style="justify-content:center">Zone d'intervention</div>
+    <h2 class="section-title" id="zone-title">Paris et ses<br><em>30 kilomètres.</em></h2>
+    <p style="color:#8A8074;margin-top:1rem;font-size:0.93rem;font-weight:300">Nous intervenons dans tout Paris et dans un rayon de 30 km autour de la capitale.</p>
+  </div>
+  <div class="zone-map" aria-hidden="true">
+    <div class="zone-ring"></div>
+    <div class="zone-ring"></div>
+    <div class="zone-ring"></div>
+    <div class="zone-center"></div>
+  </div>
+  <div class="zone-cities" data-reveal>
+    <span class="zone-city">Paris (tous arrondissements)</span>
+    <span class="zone-city">Boulogne-Billancourt</span>
+    <span class="zone-city">Levallois-Perret</span>
+    <span class="zone-city">Neuilly-sur-Seine</span>
+    <span class="zone-city">Saint-Cloud</span>
+    <span class="zone-city">Versailles</span>
+    <span class="zone-city">Vincennes</span>
+    <span class="zone-city">Saint-Denis</span>
+    <span class="zone-city">Montreuil</span>
+    <span class="zone-city">Créteil</span>
+    <span class="zone-city">Ivry-sur-Seine</span>
+    <span class="zone-city">Issy-les-Moulineaux</span>
   </div>
 </section>
 
@@ -1300,7 +1394,7 @@ footer {
 <footer>
   <div class="footer-logo-col">
     <img src="logo-simon.png" alt="Simon V Couverture" class="footer-logo-img" decoding="async">
-    <p class="footer-tagline">L'art de la toiture parisienne depuis plus de 10 ans</p>
+    <p class="footer-tagline">Façonneur de toits parisiens depuis 2013</p>
   </div>
   <div class="footer-divider"></div>
   <div class="footer-center">
@@ -1315,7 +1409,7 @@ footer {
     <p class="footer-hours">Lun — Ven<br>08h00 – 18h00</p>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Simon V Couverture — Tous droits réservés — Garantie Décennale</p>
+    <p>© 2025 Simon V Couverture · Paris 20e · Garantie Décennale · RGE</p>
   </div>
 </footer>
 
